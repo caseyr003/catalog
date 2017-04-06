@@ -1,6 +1,7 @@
 html {
 	height: 100%;
 }
+
 body {
 	background-image: url("../img/background.png");
 	background-attachment: fixed;
@@ -10,7 +11,6 @@ body {
 	min-height: 100%;
 }
 
-
 * {
 	font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
 	font-weight: 700;
@@ -18,11 +18,38 @@ body {
 }
 
 
+/* Nav */
+.nav-title {
+	display: flex;
+}
+
+.nav-name {
+	color: #fff;
+	font-size: 48px;
+	padding: 16px;
+}
+
+.nav-bar {
+	display: inline-flex;
+}
+
+.nav-login {
+	padding-top: 16px;
+	position: absolute;
+	right: 20px;
+}
+
+.nav-user {
+	color: #fff;
+	font-weight: 400;
+}
+
+
+/* Flash Messages */
 .flash {
 	background-color: transparent;
 	width:100%;
 	text-decoration: none;
-
 }
 
 .flash li {
@@ -38,6 +65,8 @@ body {
 	font-weight: 300;
 }
 
+
+/* Category */
 .category-container {
 	border-radius: 14px;
 	background-color: #333;
@@ -51,6 +80,29 @@ body {
 	min-width: 180px;
 }
 
+.category-link {
+	color: #343434;
+	font-size: 24px;
+	position: absolute;
+	bottom: 10px;
+	left: 30px;
+}
+
+.category-link:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.other-category {
+	margin-bottom: 20px;
+}
+
+.category-name {
+	font-size: 36px;
+}
+
+
+/* Backgrounds */
 .kayaking-background {
 	background-image: url("../img/kayaking.png");
 }
@@ -100,79 +152,7 @@ body {
 }
 
 
-.category-link {
-	color: #343434;
-	font-size: 24px;
-	position: absolute;
-	bottom: 10px;
-	left: 30px;
-}
-
-.category-link:hover {
-	color: #fff;
-	text-decoration: none;
-}
-
-.bottom-margin {
-	margin-bottom: 20px;
-}
-
-.main-btn {
-	font-weight: 300;
-	border-radius: 8px;
-	border: 1px solid #fff;
-	background-color: transparent;
-	color: #fff;
-	padding: 10px;
-
-}
-
-.main-btn:hover {
-	text-decoration: none;
-	color: #333;
-	background-color: #fff;
-}
-
-.add-btn {
-	padding: 16px;
-	position: absolute;
-	right: 10px;
-}
-
-.nav-title {
-	display: flex;
-}
-
-.nav-name {
-	color: #fff;
-	font-size: 48px;
-	padding: 16px;
-}
-
-.nav-bar {
-	display: inline-flex;
-}
-
-.nav-login {
-	padding-top: 16px;
-	position: absolute;
-	right: 20px;
-}
-
-.nav-user {
-	color: #fff;
-	font-weight: 400;
-}
-
-.other-category {
-	margin-bottom: 20px;
-}
-
-.form-btn {
-	width: 80px;
-	margin-top: 10px;
-}
-
+/* Containers */
 .login-container {
 	background-color: rgba(235, 235, 235, 0.6);
 }
@@ -186,6 +166,8 @@ body {
 	margin-bottom: 10px;
 }
 
+
+/* Profile */
 .creator-img {
 	max-width: 100px;
 	max-height: 100px;
@@ -197,10 +179,12 @@ body {
 	text-align: center;
 }
 
-.category-name {
-	font-size: 36px;
+.bottom-margin {
+	margin-bottom: 20px;
 }
 
+
+/* Item */
 .item-description {
 	font-size: 20px;
 	color: #424242;
@@ -217,6 +201,33 @@ body {
 	margin: 5px 0;
 }
 
+
+/* Buttons */
+.main-btn {
+	font-weight: 300;
+	border-radius: 8px;
+	border: 1px solid #fff;
+	background-color: transparent;
+	color: #fff;
+	padding: 10px;
+}
+
+.main-btn:hover {
+	text-decoration: none;
+	color: #333;
+	background-color: #fff;
+}
+
+.add-btn {
+	padding: 16px;
+	position: absolute;
+	right: 10px;
+}
+
+.form-btn {
+	width: 80px;
+	margin-top: 10px;
+}
 .list-btn {
 	margin: 10px 0;
 	vertical-align: sub;
@@ -225,4 +236,15 @@ body {
 .list-action {
 	margin: 5px 0;
 	height: 40px;
+}
+
+.edit-btn {
+	color: #fff;
+	font-weight: 200;
+	padding: 4px 8px;
+}
+
+.edit-btn:hover {
+	color: #e3e3e3;
+	text-decoration: none;
 }

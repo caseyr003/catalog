@@ -19,7 +19,7 @@ CLIENT_ID = json.loads(
 APPLICATION_NAME = "Outdoor Catalog"
 
 
-# Connect to Database and create database session
+# connect to and create database session
 engine = create_engine('sqlite:///outdoorcatalog.db')
 Base.metadata.bind = engine
 
@@ -27,16 +27,16 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# Create anti-forgery state token
+# create state token
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
-    # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
 
 
+# log in using facebook
 @app.route('/fbconnect', methods=['POST'])
 def fbconnect():
     if request.args.get('state') != login_session['state']:
@@ -94,6 +94,7 @@ def fbconnect():
     return output
 
 
+# log out of facebook
 @app.route('/fbdisconnect')
 def fbdisconnect():
     facebook_id = login_session['facebook_id']
@@ -105,6 +106,7 @@ def fbdisconnect():
     return "you have been logged out"
 
 
+# log in with google
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
@@ -190,33 +192,8 @@ def gconnect():
     flash("Welcome %s, thanks for logging in!" % login_session['username'])
     return output
 
-# User Helper Functions
 
-
-def createUser(login_session):
-    newUser = User(name=login_session['username'], email=login_session[
-                   'email'], picture=login_session['picture'])
-    session.add(newUser)
-    session.commit()
-    user = session.query(User).filter_by(email=login_session['email']).one()
-    return user.id
-
-
-def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
-    return user
-
-
-def getUserID(email):
-    try:
-        user = session.query(User).filter_by(email=email).one()
-        return user.id
-    except:
-        return None
-
-# DISCONNECT - Revoke a current user's token and reset their login_session
-
-
+# logout of google
 @app.route('/gdisconnect')
 def gdisconnect():
     # Only disconnect a connected user.
@@ -238,40 +215,59 @@ def gdisconnect():
         return response
 
 
-# JSON APIs to view category Information
+# functions for user info
+def createUser(login_session):
+    newUser = User(name=login_session['username'], email=login_session[
+                   'email'], picture=login_session['picture'])
+    session.add(newUser)
+    session.commit()
+    user = session.query(User).filter_by(email=login_session['email']).one()
+    return user.id
+
+def getUserInfo(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return user
+
+def getUserID(email):
+    try:
+        user = session.query(User).filter_by(email=email).one()
+        return user.id
+    except:
+        return None
+
+
+# return JSON for items in a category
 @app.route('/category/<int:category_id>/list/JSON')
 def categoryListJSON(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     items = session.query(Item).filter_by(
         category_id=category_id).all()
-    return jsonify(Items=[i.serialize for i in items])
+    return jsonify(items=[i.serialize for i in items])
 
 
+# return JSON for single item in a category
 @app.route('/category/<int:category_id>/list/<int:list_id>/JSON')
 def itemJSON(category_id, list_id):
-    List_Item = session.query(Item).filter_by(id=list_id).one()
-    return jsonify(List_Item=List_Item.serialize)
+    item = session.query(Item).filter_by(id=list_id).one()
+    return jsonify(item=item.serialize)
 
 
+# return JSON for a list of categories
 @app.route('/category/JSON')
 def categoriesJSON():
     categories = session.query(Category).all()
     return jsonify(categories=[c.serialize for c in categories])
 
 
-# Show all categorys
+# Show all categories
 @app.route('/')
 @app.route('/category/')
 def showCategories():
     categories = session.query(Category).order_by(asc(Category.id))
-    # if 'username' not in login_session:
-    #     return render_template('publiccategories.html', categories=categories)
-    # else:
     return render_template('categories.html', categories=categories)
 
+
 # Create a new Category
-
-
 @app.route('/category/new/', methods=['GET', 'POST'])
 def newCategory():
     if 'username' not in login_session:
@@ -291,9 +287,8 @@ def newCategory():
     else:
         return render_template('newCategory.html')
 
+
 # Edit a Category
-
-
 @app.route('/category/<int:category_id>/edit/', methods=['GET', 'POST'])
 def editCategory(category_id):
     editedCategory = session.query(
@@ -328,9 +323,8 @@ def deleteCategory(category_id):
     else:
         return render_template('deleteCategory.html', category=categoryToDelete)
 
+
 # Show a category list
-
-
 @app.route('/category/<int:category_id>/')
 @app.route('/category/<int:category_id>/list/')
 def showList(category_id):
@@ -338,13 +332,10 @@ def showList(category_id):
     creator = getUserInfo(category.user_id)
     items = session.query(Item).filter_by(
         category_id=category_id).all()
-    # if 'username' not in login_session or creator.id != login_session['user_id']:
-    #     return render_template('publiclist.html', items=items, category=category, creator=creator)
-    # else:
     return render_template('list.html', items=items, category=category, creator=creator)
 
 
-# Create a new list item
+# Create a new item
 @app.route('/category/<int:category_id>/list/new/', methods=['GET', 'POST'])
 def newItem(category_id):
     if 'username' not in login_session:
@@ -360,9 +351,8 @@ def newItem(category_id):
     else:
         return render_template('newitem.html', category_id=category_id)
 
-# Edit a list item
 
-
+# Edit an item
 @app.route('/category/<int:category_id>/list/<int:list_id>/edit', methods=['GET', 'POST'])
 def editItem(category_id, list_id):
     if 'username' not in login_session:
@@ -384,7 +374,7 @@ def editItem(category_id, list_id):
         return render_template('edititem.html', category_id=category_id, list_id=list_id, item=editedItem)
 
 
-# Delete a list item
+# Delete an item
 @app.route('/category/<int:category_id>/list/<int:list_id>/delete', methods=['GET', 'POST'])
 def deleteItem(category_id, list_id):
     if 'username' not in login_session:
@@ -402,7 +392,7 @@ def deleteItem(category_id, list_id):
         return render_template('deleteItem.html', item=itemToDelete)
 
 
-# Disconnect based on provider
+# Call disconnect function based on provider
 @app.route('/disconnect')
 def disconnect():
     if 'provider' in login_session:
