@@ -70,11 +70,11 @@
 							<hr class="item-hr">
 
 							<p class="item-description">{{item.description}}</p>
-
+							<p class="created-tag">{{item.user.name}}</p>
 							{% if item.user.id == session['user_id'] %}
 								<div class="item-edit">
-									<a class="edit-btn" href='{{url_for('editItem', category_id = category.id, list_id=item.id ) }}'>Edit</a>
-									<a class="edit-btn" href='{{url_for('deleteItem', category_id = category.id, list_id=item.id ) }}'>Delete</a>
+									<a class="edit-btn" href='{{url_for('editItem', category_id = category.id, list_id=item.id ) }}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+									<a class="edit-btn" href='{{url_for('deleteItem', category_id = category.id, list_id=item.id ) }}'><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
 								</div>
 							{% endif %}
 						</div>
