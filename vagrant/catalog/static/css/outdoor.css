@@ -1,0 +1,228 @@
+html {
+	height: 100%;
+}
+body {
+	background-image: url("../img/background.png");
+	background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin: 0;
+	min-height: 100%;
+}
+
+
+* {
+	font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	color: #fff;
+}
+
+
+.flash {
+	background-color: transparent;
+	width:100%;
+	text-decoration: none;
+
+}
+
+.flash li {
+	list-style-type: none;
+	text-align: center;
+	background-color: #5695B2;
+	color: #fff;
+	width:100%;
+	height: 30px;
+	border-radius: 14px;
+	text-decoration: none;
+	padding: 5px;
+	font-weight: 300;
+}
+
+.category-container {
+	border-radius: 14px;
+	background-color: #333;
+	background-image: url("../img/default.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	color: #fff;
+	height: 200px;
+	width: auto;
+	min-width: 180px;
+}
+
+.kayaking-background {
+	background-image: url("../img/kayaking.png");
+}
+
+.camping-background {
+	background-image: url("../img/camping.png");
+}
+
+.rock-background {
+	background-image: url("../img/rock.png");
+}
+
+.fishing-background {
+	background-image: url("../img/fishing.png");
+}
+
+.hiking-background {
+	background-image: url("../img/hiking.png");
+}
+
+.biking-background {
+	background-image: url("../img/biking.png");
+}
+
+.kayaking-light-bg {
+	background-image: url("../img/kayaking-light.png");
+}
+
+.camping-light-bg {
+	background-image: url("../img/camping-light.png");
+}
+
+.rock-light-bg {
+	background-image: url("../img/rock-light.png");
+}
+
+.fishing-light-bg {
+	background-image: url("../img/fishing-light.png");
+}
+
+.hiking-light-bg {
+	background-image: url("../img/hiking-light.png");
+}
+
+.biking-light-bg {
+	background-image: url("../img/biking-light.png");
+}
+
+
+.category-link {
+	color: #343434;
+	font-size: 24px;
+	position: absolute;
+	bottom: 10px;
+	left: 30px;
+}
+
+.category-link:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.bottom-margin {
+	margin-bottom: 20px;
+}
+
+.main-btn {
+	font-weight: 300;
+	border-radius: 8px;
+	border: 1px solid #fff;
+	background-color: transparent;
+	color: #fff;
+	padding: 10px;
+
+}
+
+.main-btn:hover {
+	text-decoration: none;
+	color: #333;
+	background-color: #fff;
+}
+
+.add-btn {
+	padding: 16px;
+	position: absolute;
+	right: 10px;
+}
+
+.nav-title {
+	display: flex;
+}
+
+.nav-name {
+	color: #fff;
+	font-size: 48px;
+	padding: 16px;
+}
+
+.nav-bar {
+	display: inline-flex;
+}
+
+.nav-login {
+	padding-top: 16px;
+	position: absolute;
+	right: 20px;
+}
+
+.nav-user {
+	color: #fff;
+	font-weight: 400;
+}
+
+.other-category {
+	margin-bottom: 20px;
+}
+
+.form-btn {
+	width: 80px;
+	margin-top: 10px;
+}
+
+.login-container {
+	background-color: rgba(235, 235, 235, 0.6);
+}
+
+.item-container {
+	background-color: rgba(235, 235, 235, 0.6);
+	border-radius: 14px;
+	padding: 10px;
+	min-height: 200px;
+	color: #343434;
+	margin-bottom: 10px;
+}
+
+.creator-img {
+	max-width: 100px;
+	max-height: 100px;
+	display: block;
+	margin: auto;
+}
+
+.creator-cap {
+	text-align: center;
+}
+
+.category-name {
+	font-size: 36px;
+}
+
+.item-description {
+	font-size: 20px;
+	color: #424242;
+	font-weight: 300;
+}
+
+.item-name {
+	font-size: 32px;
+	color: #343434;
+}
+
+.item-hr {
+	border-color: #424242;
+	margin: 5px 0;
+}
+
+.list-btn {
+	margin: 10px 0;
+	vertical-align: sub;
+}
+
+.list-action {
+	margin: 5px 0;
+	height: 40px;
+}

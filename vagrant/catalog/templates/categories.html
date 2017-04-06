@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+{% block content %}
+
+	<div class = 'flash'>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul>
+					{% for message in messages %}
+						<li> <strong> {{ message }} </strong> </li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+	</div>
+
+	<div class="row">
+		{% for category in categories %}
+			{% if category.id < 7 %}
+				<div class="col-md-4 bottom-margin">
+					{% if category.id == 1 %}
+						<div class="kayaking-light-bg category-container">
+					{% elif category.id == 2 %}
+						<div class="camping-light-bg category-container">
+					{% elif category.id == 3 %}
+						<div class="rock-light-bg category-container">
+					{% elif category.id == 4 %}
+						<div class="fishing-light-bg category-container">
+					{% elif category.id == 5 %}
+						<div class="hiking-light-bg category-container">
+					{% elif category.id == 6 %}
+						<div class="biking-light-bg category-container">
+					{% else %}
+						<div class="category-container">
+					{% endif %}
+						<a class="category-link" href = "{{url_for('showList', category_id = category.id)}}">
+							{{category.name}}
+						</a>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 other-category">
+			<div class="col-md-6">
+				<h2>Other Categories</h2>
+			</div>
+
+			<div class="col-md-6 add-btn">
+				<a href="{{url_for('newCategory')}}">
+					<button class="main-btn add-btn">
+						Add Category
+					</button>
+				</a>
+			</div>
+		</div>
+
+		{% for category in categories %}
+			{% if category.id > 6 %}
+				<div class="col-md-3 bottom-margin">
+					<div class="category-container">
+						<a class="category-link" href = "{{url_for('showList', category_id = category.id)}}">
+							{{category.name}}
+						</a>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endblock %}

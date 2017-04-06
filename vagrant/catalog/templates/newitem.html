@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-11 col-md-offset-1">
+			<h1>New Item</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1">
+			<form method = "POST">
+				<div class="form-group">
+					
+					<label for="name">Name:</label>
+					<input type ="text" maxlength="50" class="form-control" name="name"placeholder="Enter name...">
+
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Enter description..."></textarea>
+
+					<button type="submit" class="main-btn form-btn" id="submit" type="submit">
+						Create
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

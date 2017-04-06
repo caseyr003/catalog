@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-11 col-md-offset-1">
+			<h1>Edit Item</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1">
+			<form method = "POST">
+				<div class="form-group">
+
+					<label for="name">Name:</label>
+
+					<input type ="text" maxlength="100" class="form-control" name="name" value="{{ item.name }}">
+
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description">{{ item.description}}</textarea>
+
+					<button type="submit" class="main-btn form-btn" id="submit" type="submit">
+						Save
+					</button>
+				</div>
+			</form>
+
+			<a class="cancel-btn" href="/category/{{item.category.id}}/list">Cancel</a>
+		</div>
+	</div>
+{% endblock %}

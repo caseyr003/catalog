@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block content %}
+
+	<h2>Delete {{category.name}}?</h2>
+
+	<form method='POST'>
+		<button type="submit" class="main-btn create-btn" id="submit" type="submit">
+			Delete
+		</button>
+	</form>
+	
+	<a class="cancel-btn" href="/category/{{category.id}}/list">Cancel</a>
+
+{% endblock %}
