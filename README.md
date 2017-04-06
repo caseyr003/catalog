@@ -32,6 +32,17 @@ To run the project locally follow the following steps:
 * run `python project.py`
 * visit `http://localhost:5000` in your browser
 
+## JSON API
+
+The JSON API allows retrieving data from the Outdoor Catalog database_setup
+
+* `http://localhost:5000/category/JSON`
+(returns a list of all categories available)
+* `http://localhost:5000/category/<category_id>/list/JSON`
+(returns a list of all items in the provided category id)
+* `http://localhost:5000/category/<category_id>/list/<item_id>/JSON`
+(returns a item for the provided item id and category id)
+
 ## License
 
 This project is licensed under the MIT License
