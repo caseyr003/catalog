@@ -3,12 +3,12 @@ import string
 import json
 import httplib2
 import requests
-from functools import wraps
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Category, Item, User
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
+from decorators import logged_in
 from flask import (Flask, render_template, request,
                    redirect, jsonify, url_for, flash,
                    make_response, session as login_session)
@@ -27,16 +27,6 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-
-
-def logged_in(function):
-    @wraps(function)
-    def wrapper(*a, **kw):
-        # If not logged in redirect to login page
-        if 'username' not in login_session:
-            return redirect('/login')
-        return function(*a, **kw)
-    return wrapper
 
 
 # create state token
